@@ -1,0 +1,49 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_to_registries:
+    name: Build Docker image and Push to both Dockerhub and Github Container-Registry 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Log into Dockerhub registry
+        run: echo "${{ secrets.PASSWORD_DOCKERHUB }}" | docker login -u ${{ secrets.USERNAME_DOCKERHUB }} --password-stdin
+          
+      - name: Log into Github registry
+        run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+      - name: Build and push the images
+        run: |
+          # Identify Dockerfile changes across the repo and build/push the corresponding image
+          # to both Dockerhub and Github repos.
+          for filePath in $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} ${{ github.event.before }} | grep "Dockerfile");
+          do
+            folder=${filePath%"/Dockerfile"}
+            IMAGE_NAME=${folder##*/}
+
+            tmpName="image-$RANDOM"
+            docker build $folder --file $folder/Dockerfile --tag $tmpName
+
+            IMAGE_ID_DOCKERHUB=${{ secrets.USERNAME_DOCKERHUB }}/$IMAGE_NAME
+            IMAGE_ID_GITHUB=ghcr.io/${{ secrets.USERNAME_GITHUB }}/$IMAGE_NAME
+
+            echo IMAGE_ID=$IMAGE_ID
+            echo VERSION=$VERSION
+
+            docker tag $tmpName $IMAGE_ID_DOCKERHUB:latest
+            docker push $IMAGE_ID_DOCKERHUB:latest
+            
+            docker tag $tmpName $IMAGE_ID_GITHUB:latest
+            docker push $IMAGE_ID_GITHUB:latest
+          done;
+  
