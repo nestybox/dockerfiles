@@ -56,3 +56,4 @@ STOPSIGNAL SIGRTMIN+3
 
 # Set systemd as entrypoint.
 ENTRYPOINT [ "/sbin/init", "--log-level=err" ]
+
