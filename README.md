@@ -2,20 +2,29 @@ Nestybox System Container Dockerfiles
 =====================================
 
 This directory contains the Dockerfiles for system container images
-uploaded to the Nestybox public repos on DockerHub.
+uploaded to the Nestybox public repos on DockerHub and Github.
 
 The Dockerfiles and associated images are meant to be used as examples.
 
 Feel free to copy them and modify them to your needs, or source them
 from within your Dockerfiles.
 
-# Pulling a Nestybox system container image from DockerHub
+# Pulling a Nestybox system container image
 
-For example, to run the system container image that contains Ubuntu Disco + Docker, simply type:
+For example, to run the system container image that contains Ubuntu
+Bionic + Docker, simply type the following:
 
-```console
-$ docker run --runtime=sysbox-runc -it nestybox/ubuntu-disco-docker:latest
-```
+* DockerHub registry
+
+    ```console
+    $ docker run --runtime=sysbox-runc -it nestybox/ubuntu-bionic-docker:latest
+    ```
+
+* Github registry:
+
+    ```console
+    $ docker run --runtime=sysbox-runc -it ghcr.io/nestybox/ubuntu-bionic-docker:latest
+    ```
 
 # Customizing the system container to your needs
 
