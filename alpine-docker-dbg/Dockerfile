@@ -8,7 +8,8 @@ RUN apk update && apk add \
     strace \
     tree \
     libcap \
-    bind-tools
+    bind-tools \
+    nftables
 
 RUN sed -i 's/v3.10/latest-stable/g' /etc/apk/repositories && apk update && apk add docker
 
