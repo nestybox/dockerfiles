@@ -1,0 +1,12 @@
+Unit]
+Description=Random script execution
+After=docker.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/script.sh
+ExecReload=/usr/bin/script.sh
+
+[Install]
+WantedBy=multi-user.target
