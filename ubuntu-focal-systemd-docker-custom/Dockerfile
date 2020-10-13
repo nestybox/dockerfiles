@@ -15,11 +15,11 @@
 
 FROM nestybox/ubuntu-focal-systemd-docker:latest
 
-# Example of a random systemd service created to showcase a custom entry-point.
+# Example of a systemd service created to showcase a custom entry-point.
 COPY script.sh /usr/bin/
-COPY random.service /lib/systemd/system/
+COPY custom.service /lib/systemd/system/
 RUN chmod +x /usr/bin/script.sh &&                               \
-    ln -sf /lib/systemd/system/random.service                    \
-       /etc/systemd/system/multi-user.target.wants/random.service
+    ln -sf /lib/systemd/system/custom.service                    \
+       /etc/systemd/system/multi-user.target.wants/custom.service
 
 
