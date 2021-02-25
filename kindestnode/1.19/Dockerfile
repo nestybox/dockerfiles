@@ -39,6 +39,5 @@
 
 FROM kindest/node:v1.19.4
 
-# OCI runc at Git commit 9a699e1a
-COPY runc-9a699e1a /usr/local/sbin/runc
+COPY runc-v1.0.0-rc93 /usr/local/sbin/runc
 RUN chmod +x /usr/local/sbin/runc
