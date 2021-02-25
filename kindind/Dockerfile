@@ -1,11 +1,20 @@
 #
 # kindind: kubernetes-in-docker ... in docker :)
 #
+#
+# Why?
+#
+# This is useful as a way of encapsulating a full K8s cluster in a single
+# container image and properly isolating it from the underlying host. On the
+# latter point, K8s.io KinD uses unsecure privileged containers; by placing
+# K8s.io KinD inside a Sysbox container, the Sysbox container acts as secure
+# boundary around that entire K8s cluster.
+#
 # Usage:
 #
 # $ docker run --runtime=sysbox-runc -it --rm -P --name=syscont nestybox/kindind
 #
-# This will spawn a sys container which contains systemd, docker, and the K8s.io
+# This will spawn a sys container which contains systemd, Docker, and the K8s.io
 # KinD tool inside. Systemd login is "admin/admin". Once you log in you can run
 # K8s.io KinD as if you were in a VM. E.g.,:
 #
