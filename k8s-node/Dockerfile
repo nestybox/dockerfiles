@@ -15,7 +15,7 @@
 #    "default-runtime": "sysbox-runc",
 #    "runtimes": {
 #        "sysbox-runc": {
-#            "path": "/usr/local/sbin/sysbox-runc"
+#            "path": "/usr/bin/sysbox-runc"
 #        }
 #    }
 #}
