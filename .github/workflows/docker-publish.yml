@@ -3,7 +3,7 @@ name: Docker
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   push_to_registries:
