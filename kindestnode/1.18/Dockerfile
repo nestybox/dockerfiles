@@ -39,5 +39,5 @@
 
 FROM kindest/node:v1.18.2
 
-COPY runc-v1.0.0-rc93 /usr/bin/runc
-RUN chmod +x /usr/bin/runc
+COPY runc-v1.0.0-rc93 /usr/local/sbin/runc
+RUN chmod +x /usr/local/sbin/runc
