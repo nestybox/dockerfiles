@@ -13,9 +13,9 @@
 # Build Process
 # =============
 #
-# BUILDING THIS IMAGE REQUIRES CONFIGURING SYSBOX-RUNC AS DOCKER'S DEFAULT
-# RUNTIME DURING THE BUILD. REFER TO [THIS](https://github.com/nestybox/sysbox/blob/master/docs/quickstart/images.md#building-a-system-container-that-includes-inner-container-images)
-# DOC FOR MORE DETAILS.
+# Building this image requires configuring Sysbox-runc as Docker's default
+# runtime during the build process. Refer to [this](https://github.com/nestybox/sysbox/blob/master/docs/quickstart/images.md#building-a-system-container-that-includes-inner-container-images)
+# document for mroe details.
 #
 # $ sudo more /etc/docker/daemon.json
 #{
@@ -28,24 +28,20 @@
 #}
 #
 # $ sudo systemctl restart docker
-# $ docker build -t nestybox/k8s-node:<k8s_version> .
-#
-# E.g.,
-#
-# $ docker build -t nestybox/kindind:v1.18.2 .
+# $ docker build -t registry.nestybox.com/nestybox/k8s-node:v1.18.2 .
 #
 # Once the build completes, you can revert the default runtime config if you wish.
 #
 # Usage
 # =====
 #
-# $ docker run --runtime=sysbox-runc -it --rm -P --name=syscont nestybox/kindind:v1.18.2
+# $ docker run --runtime=sysbox-runc -it --rm -P --name=syscont registry.nestybox.com/nestybox/kindind:v1.18.2
 #
 # This will spawn a sys container which contains systemd, Docker, and the K8s.io
 # KinD tool inside. Systemd login is "admin/admin". Once you log in you can run
 # K8s.io KinD as if you were in a VM. E.g.,:
 #
-# $ kind create cluster --image=nestybox/kindestnode:v1.18.2
+# $ kind create cluster --image=registry.nestybox.com/nestybox/kindestnode:v1.18.2
 #
 # The "nestybox/kindestnode:v1.18.2" image is currently required due to a bug in
 # the OCI runc that prevents it from running correctly inside a system
