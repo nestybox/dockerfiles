@@ -25,7 +25,13 @@ sleep 2
 
 # pull inner images
 kubeadm config images pull --kubernetes-version=$k8s_version
+# flannel cni
 docker image pull quay.io/coreos/flannel:v0.12.0-amd64
+# weaveNet cni
+docker image pull docker.io/weaveworks/weave-kube:2.8.1
+docker image pull docker.io/weaveworks/weave-npc:2.8.1
+# calico cni
+docker image pull quay.io/tigera/operator:v1.17.2
 
 # stop dockerd (remove the .pid file as otherwise it may prevent
 # dockerd from launching correctly inside the sys container)
