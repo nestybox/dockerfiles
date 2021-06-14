@@ -1,3 +1,6 @@
+# Alpine image used by several Sysbox tests (carries alpine plus a few useful
+# debug utilities).
+
 FROM alpine:latest
 
 RUN apk update && apk add \
@@ -12,6 +15,6 @@ RUN apk update && apk add \
     bind-tools \
     nftables
 
-RUN sed -i 's/v3.10/latest-stable/g' /etc/apk/repositories && apk update && apk add docker
+RUN apk update && apk add docker
 
 CMD ["/bin/sh"]
