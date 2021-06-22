@@ -74,7 +74,7 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key
 
 # Preload k8s control plane container images into the sys container image.
 COPY kube-pull.sh /usr/bin/
-RUN chmod +x /usr/bin/kube-pull.sh && sleep 120 && kube-pull.sh $k8s_version && rm /usr/bin/kube-pull.sh
+RUN chmod +x /usr/bin/kube-pull.sh && kube-pull.sh $k8s_version && rm /usr/bin/kube-pull.sh
 
 # Docker daemon config.
 COPY daemon.json /etc/docker/
