@@ -9,7 +9,7 @@
 # Embed other images inside
 
 
-FROM alpine:3.10
+FROM alpine:latest
 
 RUN apk update && apk add \
     bash \
@@ -32,7 +32,3 @@ COPY prometheus.tar /root/img/prometheus.tar
 COPY redis_5.0.5_alpine.tar /root/img/redis_5.0.5_alpine.tar
 COPY telegraf-1.12-alpine.tar /root/img/telegraf-1.12-alpine.tar
 COPY influxdb_1.7-alpine.tar /root/img/influxdb_1.7-alpine.tar
-
-# TODO:
-
-# Add remaining images for tests; here and in get-img script. modify appropriate test.

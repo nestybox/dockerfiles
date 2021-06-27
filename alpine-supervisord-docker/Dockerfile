@@ -9,8 +9,7 @@
 FROM alpine:latest
 
 # docker
-RUN sed -i 's/v3.10/latest-stable/g' /etc/apk/repositories && \
-    apk add --update docker && \
+RUN apk add --update docker && \
     rm  -rf /tmp/* /var/cache/apk/*
 
 # supervisord
@@ -34,4 +33,3 @@ COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
-

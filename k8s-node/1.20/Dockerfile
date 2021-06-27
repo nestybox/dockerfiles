@@ -38,7 +38,7 @@
 #
 # Then run 'kubeadm init' in them just as you would on a physical host or VM.
 
-FROM nestybox/ubuntu-bionic-systemd:latest
+FROM nestybox/ubuntu-focal-systemd:latest
 
 ARG k8s_version=v1.20.2
 
