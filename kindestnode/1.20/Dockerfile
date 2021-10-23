@@ -15,7 +15,7 @@
 # within a user-namespace).
 #
 # This requirement stems from the fact that cgroups v2 formalizes the concept of
-# "cgroup delegation", where the container is allowed manage a subset of the
+# "cgroup delegation", where the container is allowed to manage a subset of the
 # cgroup hierarchy.
 #
 # In Sysbox containers however, this requirement is too stringent, as Sysbox
@@ -28,10 +28,10 @@
 #
 # Usage:
 #
-# 1) Launch a Sysbox container (or pod) that has the K8s.io KinD tool inside of it.
+# 1) Launch a Sysbox container (or pod) and install the K8s.io KinD tool inside of it.
 #
 # For example, there is another container image called nestybox/kindind that comes
-# with Ubuntu + Docker + KinD:
+# with Ubuntu + Docker + KinD in it already:
 #
 # $ docker run --runtime=sysbox-runc -it --rm -P --name=syscont --hostname=syscont nestybox/kindind
 #
