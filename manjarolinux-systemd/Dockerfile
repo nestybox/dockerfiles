@@ -36,4 +36,4 @@ RUN sed -i 's/# \%sudo\sALL=(ALL)\sALL/\%sudo ALL=(ALL) ALL/g' /etc/sudoers
 RUN groupadd sudo && useradd --create-home --shell /bin/bash -G sudo admin && echo "admin:admin" | chpasswd
 
 # Set systemd as entrypoint.
-ENTRYPOINT [ "/sbin/init", "--log-level=err" ]
+ENTRYPOINT [ "/lib/systemd/systemd", "--log-level=err" ]
