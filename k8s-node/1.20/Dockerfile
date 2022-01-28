@@ -38,7 +38,7 @@
 #
 # Then run 'kubeadm init' in them just as you would on a physical host or VM.
 
-FROM nestybox/ubuntu-focal-systemd:latest
+FROM ghcr.io/nestybox/ubuntu-focal-systemd:latest
 
 ARG k8s_version=v1.20.2
 
@@ -49,18 +49,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y                
        curl                                                                             \
        gnupg-agent                                                                      \
        software-properties-common                                                       \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -          \
-    && apt-key fingerprint 0EBFCD88                                                     \
-    && add-apt-repository                                                               \
-       "deb [arch=amd64] https://download.docker.com/linux/ubuntu                       \
-       $(lsb_release -cs)                                                               \
-       stable"                                                                          \
-    && apt-get update                                                                   \
-    && apt-get install --no-install-recommends -y docker-ce docker-ce-cli containerd.io \
-    && rm -rf /var/lib/apt/lists/*                                                      \
+    && curl -fsSL https://get.docker.com -o get-docker.sh                               \
+    && sh get-docker.sh                                                                 \
     # Add user "admin" to the Docker group                                              \
     && usermod -a -G docker admin
-
 
 # Install Kubeadm.
 #
@@ -69,9 +61,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y                
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add    \
     && apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"        \
     && apt-get update && apt-get install --no-install-recommends -y                     \
-    kubeadm="${k8s_version#v}"-00 \
-    kubelet="${k8s_version#v}"-00 \
-    kubectl="${k8s_version#v}"-00 \
+    kubeadm:${arch}="${k8s_version#v}"-00 \
+    kubelet:${arch}="${k8s_version#v}"-00 \
+    kubectl:${arch}="${k8s_version#v}"-00 \
     && rm -rf /var/lib/apt/lists/*
 
 # Preload k8s control plane container images into the sys container image.
