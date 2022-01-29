@@ -67,18 +67,18 @@ parseCmdArgs()
 }
 
 # the list of inner images to be retrieved
-inner_img=( "mysql/mysql-server:5.6,mysql_server_5.6.tar"
+inner_img=( "mysql/mysql-server:8.0,mysql_server_8.0.tar"
             "python:alpine,python_alpine.tar"
-            "elasticsearch:5.6.16-alpine,elasticsearch_5.6.16-alpine.tar"
+            "elasticsearch:7.16.3,elasticsearch_7.16.3.tar"
             "alpine:3.10,alpine_3.10.tar"
             "httpd:alpine,httpd_alpine.tar"
-            "fluent/fluentd:edge,fluentd_edge.tar"
+            "fluentd:v1.14-1,fluentd_1.14.1.tar"
             "nginx:mainline-alpine,nginx_mainline_alpine.tar"
             "postgres:alpine,postgres_alpine.tar"
             "prom/prometheus,prometheus.tar"
             "redis:5.0.5-alpine,redis_5.0.5_alpine.tar"
-            "influxdb:1.7-alpine,influxdb_1.7-alpine.tar"
-            "telegraf:1.12-alpine,telegraf-1.12-alpine.tar" )
+            "influxdb:2.0-alpine,influxdb_2.0-alpine.tar"
+            "telegraf:1.21,telegraf-1.21.tar" )
 
 function get_img() {
   for i in "${inner_img[@]}"; do
