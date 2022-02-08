@@ -10,10 +10,14 @@
 # NOTE: THIS IMAGE SHOULD BE BUILT INSIDE THE SYSBOX TEST CONTAINER,
 # TO AVOID THE PROBLEMS IN SYSBOX ISSUE 676.
 #
-# $ docker build -t nestybox/k8s-node-test:v1.20.2 .
+# This testing image is expected to be utilized from all the Sysbox's
+# supported platforms, so it must be generated with an instruction
+# like this one:
+#
+# $ docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/nestybox/k8s-node-test:v1.20.2 --push .
 #
 
-FROM nestybox/k8s-node:v1.20.2
+FROM ghcr.io/nestybox/k8s-node:v1.20.2
 
 ARG k8s_version=v1.20.2
 
@@ -31,3 +35,4 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     tcpdump \
     bridge-utils \
     && rm -rf /var/lib/apt/lists/*
+
