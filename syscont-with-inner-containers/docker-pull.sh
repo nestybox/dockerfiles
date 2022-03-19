@@ -13,4 +13,5 @@ docker pull alpine:latest
 # dockerd from launching correctly inside sys container)
 kill $dockerd_pid
 rm -f /var/run/docker.pid
+rm -f /var/run/docker/containerd/containerd.pid
 rm -f /var/run/containerd/containerd.pid
