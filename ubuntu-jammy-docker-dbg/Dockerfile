@@ -1,8 +1,5 @@
 #
-# Ubuntu Jammy + Docker
-#
-# Instructions for docker installation taken from:
-# https://docs.docker.com/install/linux/docker-ce/ubuntu/
+# Ubuntu Jammy + Docker + Debug tools
 #
 
 FROM nestybox/ubuntu-jammy-docker:latest
