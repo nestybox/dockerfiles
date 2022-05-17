@@ -17,9 +17,9 @@
 # $ docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/nestybox/k8s-node-test:v1.20.2 --push .
 #
 
-FROM ghcr.io/nestybox/k8s-node:v1.20.2
+FROM ghcr.io/nestybox/k8s-node:v1.21.12
 
-ARG k8s_version=v1.20.2
+ARG k8s_version=v1.21.12
 
 # Debug/Testing utilities
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -35,4 +35,3 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     tcpdump \
     bridge-utils \
     && rm -rf /var/lib/apt/lists/*
-
