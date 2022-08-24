@@ -51,6 +51,14 @@ RUN apt-get update &&                            \
     # Create default 'admin/admin' user
     useradd --create-home --shell /bin/bash admin && echo "admin:admin" | chpasswd && adduser admin sudo
 
+# Disable systemd services/units that are unnecessary within a container.
+RUN systemctl mask systemd-udevd.service \
+                   systemd-udevd-kernel.socket \
+                   systemd-udevd-control.socket \
+                   systemd-modules-load.service \
+                   sys-kernel-debug.mount \
+                   sys-kernel-tracing.mount
+
 # Make use of stopsignal (instead of sigterm) to stop systemd containers.
 STOPSIGNAL SIGRTMIN+3
 

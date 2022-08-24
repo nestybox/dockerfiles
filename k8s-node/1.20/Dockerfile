@@ -38,29 +38,13 @@
 #
 # Then run 'kubeadm init' in them just as you would on a physical host or VM.
 
-FROM nestybox/ubuntu-focal-systemd:latest
+FROM ghcr.io/nestybox/ubuntu-focal-systemd-docker:latest
 
 ARG k8s_version=v1.20.2
 
-# Install Docker.
-RUN apt-get update && apt-get install --no-install-recommends -y                        \
-       apt-transport-https                                                              \
-       ca-certificates                                                                  \
-       curl                                                                             \
-       gnupg-agent                                                                      \
-       software-properties-common                                                       \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -          \
-    && apt-key fingerprint 0EBFCD88                                                     \
-    && add-apt-repository                                                               \
-       "deb [arch=amd64] https://download.docker.com/linux/ubuntu                       \
-       $(lsb_release -cs)                                                               \
-       stable"                                                                          \
-    && apt-get update                                                                   \
-    && apt-get install --no-install-recommends -y docker-ce docker-ce-cli containerd.io \
-    && rm -rf /var/lib/apt/lists/*                                                      \
-    # Add user "admin" to the Docker group                                              \
-    && usermod -a -G docker admin
-
+# Requirements for subsequent steps.
+RUN apt-get update && apt-get install --no-install-recommends -y software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Kubeadm.
 #
