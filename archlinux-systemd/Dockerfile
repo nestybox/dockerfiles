@@ -23,8 +23,15 @@ RUN rm -rf /archlinux/usr/share/locale && rm -rf /archlinux/usr/share/man
 # (due to lack of permissions inside unprivileged containers)
 RUN systemctl mask systemd-journald-audit.socket systemd-udev-trigger.service systemd-networkd-wait-online.service
 
-# The following systemd services are not needed
-RUN systemctl mask systemd-firstboot.service
+# Disable systemd services/units that are unnecessary within a container.
+RUN systemctl mask systemd-udevd.service \
+                   systemd-udevd-kernel.socket \
+                   systemd-udevd-control.socket \
+                   systemd-firstboot.service \
+                   systemd-modules-load.service \
+                   sys-kernel-config.mount \
+                   sys-kernel-debug.mount \
+                   sys-kernel-tracing.mount
 
 # switch default target from graphical to multi-user
 RUN systemctl set-default multi-user.target

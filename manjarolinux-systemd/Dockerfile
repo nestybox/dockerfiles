@@ -21,7 +21,7 @@ FROM manjarolinux/base
 RUN systemctl mask systemd-journald-audit.socket systemd-udev-trigger.service systemd-networkd-wait-online.service
 
 # The following systemd services are not needed
-RUN systemctl mask systemd-firstboot.service
+RUN systemctl mask systemd-firstboot.service sys-kernel-debug.mount sys-kernel-tracing.mount
 
 # switch default target from graphical to multi-user
 RUN systemctl set-default multi-user.target
