@@ -14,7 +14,7 @@
 # supported platforms, so it must be generated with an instruction
 # like this one:
 #
-# $ docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/nestybox/k8s-node-test:v1.20.2 --push .
+# $ docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/nestybox/k8s-node-test:v1.21.12 --push .
 #
 
 FROM ghcr.io/nestybox/k8s-node:v1.21.12

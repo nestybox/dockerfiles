@@ -53,6 +53,7 @@ RUN apt-get update &&                            \
 
 # Disable systemd services/units that are unnecessary within a container.
 RUN systemctl mask systemd-udevd.service \
+                   systemd-udev-trigger.service \
                    systemd-udevd-kernel.socket \
                    systemd-udevd-control.socket \
                    systemd-modules-load.service \
