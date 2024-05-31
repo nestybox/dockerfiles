@@ -1,7 +1,5 @@
 #
-# Alpine + some extra tools
+# Alpine
 #
 
 FROM alpine:latest
-
-RUN apk update && apk add bpftool
