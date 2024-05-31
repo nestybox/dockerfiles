@@ -9,6 +9,17 @@ The Dockerfiles and associated images are meant to be used as examples.
 Feel free to copy them and modify them to your needs, or source them
 from within your Dockerfiles.
 
+# Building the images
+
+* In general, make sure to build each image for the supported platforms. For example, to
+  build and push the `ghcr.io/nestybox/alpine-test` image for both amd64 and arm64:
+
+```console
+$ docker buildx create --driver=docker-container --name mybuilder --use
+$ cd alpine-test
+$ docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/nestybox/alpine . --push
+```
+
 # Pulling a Nestybox system container image
 
 For example, to run the system container image that contains Ubuntu
