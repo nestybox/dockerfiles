@@ -59,7 +59,8 @@ RUN systemctl mask systemd-udevd.service \
                    sys-kernel-debug.mount \
                    sys-kernel-tracing.mount \
                    sys-kernel-config.mount \
-                   e2scrub_reap.service
+                   e2scrub_reap.service \
+                   e2scrub_all.timer
 
 # Make use of stopsignal (instead of sigterm) to stop systemd containers.
 STOPSIGNAL SIGRTMIN+3
