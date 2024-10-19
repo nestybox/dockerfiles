@@ -23,6 +23,7 @@ RUN add-apt-repository \
        stable"
 RUN apt-get update && apt-get install --no-install-recommends -y \
        docker-ce docker-ce-cli containerd.io
+RUN usermod -aG docker jenkins
 
 #
 # supervisord
@@ -38,4 +39,3 @@ COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
-
